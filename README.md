@@ -21,7 +21,7 @@ Clone this repository or download the source code as a zip file and add/merge th
 Add the following to your `configuration.yaml` file:
 
 ```yaml
-# Example configuration.yaml entry for showing current HDO state
+# Example configuration.yaml entry for showing current holiday name
 sensor:
   - platform: czsvatek_sensor
 ```
