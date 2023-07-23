@@ -1,0 +1,1 @@
+"""czsvatek_sensor integration."""
