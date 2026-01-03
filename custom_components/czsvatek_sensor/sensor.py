@@ -44,6 +44,9 @@ class CZSvatekSensor(SensorEntity):
 
     _attr_name = "Svátek dnes"
     
+    def __init__(self):
+        self._attr_extra_state_attributes = {}
+        
     #@Throttle(MIN_TIME_BETWEEN_SCANS)
     def update(self) -> None:
         """Fetch new state data for the sensor.
@@ -51,5 +54,10 @@ class CZSvatekSensor(SensorEntity):
         This is the only method that should fetch new data for Home Assistant.
         """
         ted = datetime.now()
-        jmeno = seznam[int(ted.strftime("%m"))][int(ted.strftime("%d"))]
-        self._attr_native_value = jmeno
+        zitra = ted + timedelta(days=1)
+        #jmeno = seznam[int(ted.strftime("%m"))][int(ted.strftime("%d"))]
+        jmeno_dnes = seznam[ted.month][ted.day]
+        jmeno_zitra = seznam[zitra.month][zitra.day]
+        self._attr_native_value = jmeno_dnes
+        self._attr_extra_state_attributes["dnes"] = jmeno_dnes
+        self._attr_extra_state_attributes["zitra"] = jmeno_zitra
